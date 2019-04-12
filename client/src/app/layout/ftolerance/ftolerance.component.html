@@ -1,0 +1,21 @@
+<div id="pngdiv">
+  <ul>
+    <li *ngFor="let location of locationArray" (click)="getDataForLocation(location.location)">
+      {{ location.location }}
+    </li>
+  </ul>
+  <div *ngIf="loadingContent">
+    loading....
+  </div>
+</div>
+
+<agm-map [fitBounds]="true" [styles]="customStyle" [latitude]="lat" [longitude]="lng" [zoom]="zoom"
+  [disableDefaultUI]="false" [zoomControl]="true">
+  <agm-marker position="map.getCenter()" [agmFitBounds]="true" *ngFor="let m of markerArray" [latitude]="m.lat" [longitude]="m.lng"
+    [animation]="m.animation" [iconUrl]="m.img">
+    <agm-info-window>
+      <strong>Address:</strong> {{m.address}} <br>
+      <strong>Status:</strong> {{m.status}} <br>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tickstack-client-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: client
+  ports:
+    - port: 3899
+      targetPort: 3899
